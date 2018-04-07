@@ -1,0 +1,12 @@
+2018-04-08 02:24:12,203 INFO [org.eclipse.jetty.util.log] - Logging initialized @418ms
+2018-04-08 02:24:12,298 INFO [org.eclipse.jetty.server.Server] - jetty-9.2.6.v20141205
+2018-04-08 02:24:12,337 INFO [/] - Initializing Spring root WebApplicationContext
+2018-04-08 02:24:12,338 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+2018-04-08 02:39:53,976 INFO [org.eclipse.jetty.util.log] - Logging initialized @525ms
+2018-04-08 02:39:54,075 INFO [org.eclipse.jetty.server.Server] - jetty-9.2.6.v20141205
+2018-04-08 02:39:54,124 INFO [/] - Initializing Spring root WebApplicationContext
+2018-04-08 02:39:54,124 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+2018-04-08 02:40:13,170 INFO [org.eclipse.jetty.util.log] - Logging initialized @408ms
+2018-04-08 02:40:13,268 INFO [org.eclipse.jetty.server.Server] - jetty-9.2.6.v20141205
+2018-04-08 02:40:13,317 INFO [/] - Initializing Spring root WebApplicationContext
+2018-04-08 02:40:13,317 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started

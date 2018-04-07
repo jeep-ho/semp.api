@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.semp.api.dao.TbsUserMapper">
+  <resultMap id="BaseResultMap" type="com.semp.api.domain.TbsUser">
+    <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
+    <result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="IS_SYS" jdbcType="BIT" property="isSys" />
+    <result column="BUILD_ID" jdbcType="VARCHAR" property="buildId" />
+    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="GENDER" jdbcType="INTEGER" property="gender" />
+    <result column="BIND_PHONE" jdbcType="BIT" property="bindPhone" />
+    <result column="FACE" jdbcType="VARCHAR" property="face" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="MODIFY_USER_ID" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="STATE" jdbcType="SMALLINT" property="state" />
+    <result column="sys_updatetime" jdbcType="TIMESTAMP" property="sysUpdatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.semp.api.domain.TbsUser">
+    <result column="MEMO" jdbcType="LONGVARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USER_ID, ORG_CODE, DEPT_CODE, CODE, IS_SYS, BUILD_ID, ROLE_ID, PASSWORD, GENDER, 
+    BIND_PHONE, FACE, CREATE_TIME, CREATE_USER_ID, MODIFY_USER_ID, MODIFY_TIME, STATE, 
+    sys_updatetime
+  </sql>
+  <sql id="Blob_Column_List">
+    MEMO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_bs_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_bs_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.semp.api.domain.TbsUser">
+    <selectKey keyProperty="userId" order="BEFORE" resultType="java.lang.String">
+      selectuuid_short()
+    </selectKey>
+    insert into t_bs_user (USER_ID, ORG_CODE, DEPT_CODE, 
+      CODE, IS_SYS, BUILD_ID, ROLE_ID, 
+      PASSWORD, GENDER, BIND_PHONE, 
+      FACE, CREATE_TIME, CREATE_USER_ID, 
+      MODIFY_USER_ID, MODIFY_TIME, STATE, 
+      sys_updatetime, MEMO)
+    values (#{userId,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{isSys,jdbcType=BIT}, #{buildId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{bindPhone,jdbcType=BIT}, 
+      #{face,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
+      #{modifyUserId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{state,jdbcType=SMALLINT}, 
+      #{sysUpdatetime,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.semp.api.domain.TbsUser">
+    <selectKey keyProperty="userId" order="BEFORE" resultType="java.lang.String">
+      selectuuid_short()
+    </selectKey>
+    insert into t_bs_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      USER_ID,
+      <if test="orgCode != null">
+        ORG_CODE,
+      </if>
+      <if test="deptCode != null">
+        DEPT_CODE,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="isSys != null">
+        IS_SYS,
+      </if>
+      <if test="buildId != null">
+        BUILD_ID,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="bindPhone != null">
+        BIND_PHONE,
+      </if>
+      <if test="face != null">
+        FACE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="sysUpdatetime != null">
+        sys_updatetime,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{userId,jdbcType=VARCHAR},
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isSys != null">
+        #{isSys,jdbcType=BIT},
+      </if>
+      <if test="buildId != null">
+        #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="bindPhone != null">
+        #{bindPhone,jdbcType=BIT},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="sysUpdatetime != null">
+        #{sysUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.semp.api.domain.TbsUser">
+    update t_bs_user
+    <set>
+      <if test="orgCode != null">
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isSys != null">
+        IS_SYS = #{isSys,jdbcType=BIT},
+      </if>
+      <if test="buildId != null">
+        BUILD_ID = #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="bindPhone != null">
+        BIND_PHONE = #{bindPhone,jdbcType=BIT},
+      </if>
+      <if test="face != null">
+        FACE = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="sysUpdatetime != null">
+        sys_updatetime = #{sysUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.semp.api.domain.TbsUser">
+    update t_bs_user
+    set ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      IS_SYS = #{isSys,jdbcType=BIT},
+      BUILD_ID = #{buildId,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=INTEGER},
+      BIND_PHONE = #{bindPhone,jdbcType=BIT},
+      FACE = #{face,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      MODIFY_USER_ID = #{modifyUserId,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=SMALLINT},
+      sys_updatetime = #{sysUpdatetime,jdbcType=TIMESTAMP},
+      MEMO = #{memo,jdbcType=LONGVARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.semp.api.domain.TbsUser">
+    update t_bs_user
+    set ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      IS_SYS = #{isSys,jdbcType=BIT},
+      BUILD_ID = #{buildId,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=INTEGER},
+      BIND_PHONE = #{bindPhone,jdbcType=BIT},
+      FACE = #{face,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      MODIFY_USER_ID = #{modifyUserId,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=SMALLINT},
+      sys_updatetime = #{sysUpdatetime,jdbcType=TIMESTAMP}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

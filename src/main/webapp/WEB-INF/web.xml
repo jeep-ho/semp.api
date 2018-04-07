@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+ <!-- springweb控制器配置 -->
+ <!--生命周期：
+ 实例化-初始化-service-销毁 
+ -->
+ <servlet>
+ 	<servlet-name>mvc</servlet-name>
+ 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- 配置指定springmvc配置文件位置 -->
+    <init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>classpath:mvc-servlet.xml</param-value>
+    </init-param>
+    <!-- 启动参数，只要大于0就能够和web容器同时实例化 -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ <servlet-mapping>
+ 	<servlet-name>mvc</servlet-name>
+ 	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+ 
+ <display-name>semp.api</display-name>
+ <welcome-file-list>
+	    <welcome-file>index.html</welcome-file>
+	    <welcome-file>index.htm</welcome-file>
+	    <welcome-file>index.jsp</welcome-file>
+	    <welcome-file>default.html</welcome-file>
+	    <welcome-file>default.htm</welcome-file>
+	    <welcome-file>default.jsp</welcome-file>
+   </welcome-file-list>
+</web-app>

@@ -1,0 +1,225 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kittyinnovation</groupId>
+  <artifactId>semp.api</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <properties>
+   <!-- 文件拷贝时编码格式 -->
+   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>   
+   <!-- 编译时编码格式 -->
+   <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <!-- spring版本号 -->  
+        <spring.version>4.3.14.RELEASE</spring.version>  
+        <!-- mybatis版本号 -->  
+        <mybatis.version>3.4.1</mybatis.version>
+        <mybatis-generator-core.version>1.3.5</mybatis-generator-core.version>  
+       <!-- log4j日志文件管理包版本 -->  
+        <slf4j.version>1.7.25</slf4j.version>  
+        <log4j.version>1.2.17</log4j.version>
+        <!-- mysql链接器版本 -->
+        <mysql-connector-java.version>5.1.38</mysql-connector-java.version> 
+  </properties>
+  <!-- 添加依赖 -->
+  <dependencies>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.5</version>
+	    <scope>provided</scope>
+	</dependency>
+	<!-- jersey -->
+	 <dependency>  
+        <groupId>com.sun.jersey</groupId>  
+        <artifactId>jersey-server</artifactId>  
+        <version>1.8</version>  
+    </dependency>
+    <dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-spring3</artifactId>
+			<version>2.17</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlets</artifactId>
+			<version>9.2.6.v20141205</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>9.2.6.v20141205</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.17</version>
+		</dependency>
+		 <!-- tomcat jdbc pool -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>8.0.28</version>
+        </dependency>   
+    <!-- mybatis核心包 -->  
+    <dependency>  
+        <groupId>org.mybatis</groupId>  
+        <artifactId>mybatis</artifactId>  
+        <version>${mybatis.version}</version>  
+    </dependency> 
+     <!-- mybatis/spring包 -->  
+    <dependency>  
+        <groupId>org.mybatis</groupId>  
+        <artifactId>mybatis-spring</artifactId>  
+        <version>1.3.1</version>  
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
+	<dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>${mybatis-generator-core.version}</version>
+      </dependency>
+   <!-- 导入Mysql数据库链接jar包 -->  
+    <dependency>  
+        <groupId>mysql</groupId>  
+        <artifactId>mysql-connector-java</artifactId>  
+        <version>${mysql-connector-java.version}</version>  
+    </dependency>  
+    <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->  
+    <dependency>  
+        <groupId>commons-dbcp</groupId>  
+        <artifactId>commons-dbcp</artifactId>  
+        <version>1.2.2</version>  
+    </dependency>  
+    <!-- JSTL标签类 -->  
+    <dependency>  
+        <groupId>jstl</groupId>  
+        <artifactId>jstl</artifactId>  
+        <version>1.2</version>  
+    </dependency>
+     <!-- log start -->  
+    <dependency>  
+        <groupId>log4j</groupId>  
+        <artifactId>log4j</artifactId>  
+        <version>${log4j.version}</version>  
+    </dependency>  
+    <!-- 格式化对象，方便输出日志 -->  
+    <dependency>  
+        <groupId>com.alibaba</groupId>  
+        <artifactId>fastjson</artifactId>  
+        <version>1.1.41</version>  
+    </dependency>  
+    <dependency>  
+        <groupId>org.slf4j</groupId>  
+        <artifactId>slf4j-api</artifactId>  
+        <version>${slf4j.version}</version>  
+    </dependency>  
+
+    <dependency>  
+        <groupId>org.slf4j</groupId>  
+        <artifactId>slf4j-log4j12</artifactId>  
+        <version>${slf4j.version}</version>  
+    </dependency>  
+    <!-- log end --> 
+    <!-- junit -->
+       <dependency>
+           <groupId>junit</groupId>
+           <artifactId>junit</artifactId>
+           <version>4.8.2</version>
+       </dependency>
+  </dependencies>
+  <build>  
+    <plugins>  
+    <!-- jdk版本控制插件 -->
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <configuration>  
+                <source>1.7</source>  
+                <target>1.7</target>  
+            </configuration>  
+        </plugin>
+        <!-- Mybatis代码生成插件 -->
+        <plugin>
+           <groupId>org.mybatis.generator</groupId>
+           <artifactId>mybatis-generator-maven-plugin</artifactId>
+           <version>1.3.2</version>
+           <executions>
+              <execution>
+                 <id>Generate MyBatis Files</id>
+                 <goals>
+                    <goal>generate</goal>
+                 </goals>
+                 <phase>generate</phase>
+                 <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                 </configuration>
+              </execution>
+           </executions>
+           <dependencies>
+              <dependency>
+                 <groupId>mysql</groupId>
+                 <artifactId>mysql-connector-java</artifactId>
+                 <version>${mysql-connector-java.version}</version>
+              </dependency>
+              <dependency>
+                 <groupId>org.mybatis.generator</groupId>
+           <artifactId>mybatis-generator-core</artifactId>
+                 <version>${mybatis-generator-core.version}</version>
+              </dependency>
+              <dependency>
+                 <groupId>org.mybatis</groupId>
+                 <artifactId>mybatis</artifactId>
+                 <version>${mybatis.version}</version>
+              </dependency>
+           </dependencies>
+        </plugin>  
+    </plugins>  
+</build>  
+</project>
